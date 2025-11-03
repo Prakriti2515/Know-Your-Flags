@@ -40,3 +40,9 @@ h1{
 #submit:hover{
     background-color: firebrick;
 }
+img{
+    margin-top: 20px;
+    width: 200px;
+    border: 2px solid brown;
+    border-radius: 10px;
+}
