@@ -1,0 +1,17 @@
+{
+  "name": "know-your-flags",
+  "version": "1.0.0",
+  "description": "This is a mini project allowing users to enter a country's name and visualise its flag on the screen. It is a minimal, focused website that provides interactivty with speed.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
