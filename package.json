@@ -4,10 +4,11 @@
   "description": "This is a mini project allowing users to enter a country's name and visualise its flag on the screen. It is a minimal, focused website that provides interactivty with speed.",
   "main": "script.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Prakriti",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.3",
