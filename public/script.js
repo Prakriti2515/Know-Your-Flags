@@ -10,18 +10,19 @@ async function getFlag(){
     }
 
     try{
-        const res = await fetch(``);
+        const res = await fetch(`/api/flag?country=${country}`);
         const data = await res.json();
 
-        if(data.status === 404)
+        if(!data || data.error)
             flag.innerHTML = "<p>Country not found!</p>"
         else{
-            const flagUrl = data.
-            flag.innerHTML = `<img src = "${flagUrl}" alt="Flag of ${country}">`
+            const flagUrl = data.flag || data[0]?.rectangle_image_url;
+            flag.innerHTML = `<img src = "${flagUrl}" alt="Flag of ${country}" width="200">`
         }
     }
     catch(error){
         flag.innerHTML = "<p>Something went wrong. Please try again later.</p>"
+        console.error(error);
     }
 }
     
