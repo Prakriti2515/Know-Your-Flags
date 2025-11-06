@@ -4,6 +4,7 @@ async function getFlag(){
     const country = document.getElementById("enter").value.trim();
     const flag = document.getElementById("flag")
     flag.innerHTML = ""
+    
     if(!country){
         flag.innerHTML = "<p>Country name required!</p>"
         return;
@@ -13,16 +14,17 @@ async function getFlag(){
         const res = await fetch(`/api/flag?country=${country}`);
         const data = await res.json();
 
-        if(!data || data.error)
+        if(!data.length)
             flag.innerHTML = "<p>Country not found!</p>"
         else{
-            const flagUrl = data.flag || data[0]?.rectangle_image_url;
+            const flagUrl = data[0].rectangle_image_url;
             flag.innerHTML = `<img src = "${flagUrl}" alt="Flag of ${country}" width="200">`
         }
     }
     catch(error){
-        flag.innerHTML = "<p>Something went wrong. Please try again later.</p>"
         console.error(error);
+        flag.innerHTML = "<p>Something went wrong. Please try again later.</p>"
+        
     }
 }
     

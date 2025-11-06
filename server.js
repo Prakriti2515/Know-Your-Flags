@@ -1,22 +1,29 @@
 import express from "express"
-import fetch from "node-fetch"
 import dotenv from "dotenv"
+import fetch from  "node-fetch"
+import path from "path"
+import { fileURLToPath } from "url";
+
 dotenv.config();
 
 const app = express();
 
-app.use(express.static("public"))
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
-app.get("/api/flag", async(requestAnimationFrame, res)=>{
-    const country = requestAnimationFrame.query.country;
+app.use(express.static(path.join(dirname, "public")))
 
+app.get("/api/flag", async(req, res)=>{
+    const country = req.query.country;
+    if (!country) {
+        console.log("Error 400: Country name required")
+        return res.status(400).json({error:"Country name required"});
+  }
     try{
         const response = await fetch(
             `https://api.api-ninjas.com/v1/countryflag?country=${country}`,
             {
-                headers:{
-                    "X-Api-Key": process.env.API_KEY
-                }
+                headers:{"X-Api-Key": process.env.API_KEY}
             }
         );
         const data = await response.json();
