@@ -18,16 +18,17 @@ app.get("/api/flag", async(req, res)=>{
     if (!country) {
         console.log("Error 400: Country name required")
         return res.status(400).json({error:"Country name required"});
-  }
+    }
     try{
         const response = await fetch(
             `https://api.api-ninjas.com/v1/countryflag?country=${country}`,
             {
-                headers:{"X-Api-Key": process.env.API_KEY}
+                headers:{"X-Api-Key":process.env.API_KEY}
             }
         );
         const data = await response.json();
-        res.json(data);
+        console.log(data[0].rectangle_image_url)
+        res.json({flagUrl:data[0].rectangle_image_url});
     }
     catch(error){
         console.error(error);
