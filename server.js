@@ -27,8 +27,17 @@ app.get("/api/flag", async(req, res)=>{
             }
         );
         const data = await response.json();
-        console.log(data[0].rectangle_image_url)
-        res.json({flagUrl:data[0].rectangle_image_url});
+        console.log(`data: ${JSON.stringify(data,null,2)}`)
+        if(data.rectangle_image_url.length)
+        {
+            console.log("flag url: ",data.rectangle_image_url)
+            res.json({rectangle_image_url:data.rectangle_image_url});
+        }
+        else{
+            console.log("Error fetching data")
+            return res.status(500).json({error:"Error fetching flag"})
+        }
+        
     }
     catch(error){
         console.error(error);

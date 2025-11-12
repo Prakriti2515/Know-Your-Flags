@@ -12,14 +12,17 @@ async function getFlag(){
 
     try{
         const res = await fetch(`/api/flag?country=${country}`);
+        console.log("Response status:", res.status)
         const data = await res.json();
 
-        if(!data || data.error)
+        console.log("frontend fetched data: ", data)
+        
+        if(!data)
             flag.innerHTML = "<p>Country not found!</p>"
         else{
-            const flagUrl = data[0].rectangle_image_url;
-            console.log(flagUrl)
-            flag.innerHTML = `<img src = ${flagUrl} alt="Flag of ${country}" width="200">`
+            const flagUrl = data.rectangle_image_url;
+            console.log("Flag URL:",flagUrl)
+            flag.innerHTML = `<img src="${flagUrl}" alt="Flag of ${country}" width="200">`
         }
     }
     catch(error){
